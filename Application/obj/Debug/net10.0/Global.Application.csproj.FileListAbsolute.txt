@@ -13,3 +13,4 @@ C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Application\obj\Debug\net10.0\
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Application\bin\Debug\net10.0\Global.Domain.dll
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Application\bin\Debug\net10.0\Global.Domain.pdb
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Application\obj\Debug\net10.0\Global.A.87ACBBBA.Up2Date
+C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Application\obj\Debug\net10.0\Global.Application.sourcelink.json

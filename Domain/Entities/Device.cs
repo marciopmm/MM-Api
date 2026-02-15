@@ -18,13 +18,5 @@ namespace Global.Domain.Entities
             State = state;
             CreationTime = creationTime;
         }
-
-        public bool IsValid()
-        {
-            if (this.State == State.InUse)
-            {
-                if ()
-            }
-        }
     }
 }

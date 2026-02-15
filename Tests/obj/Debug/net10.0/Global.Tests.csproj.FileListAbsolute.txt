@@ -266,3 +266,4 @@ C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Tests\obj\Debug\net10.0\refint
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Tests\obj\Debug\net10.0\Global.Tests.pdb
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Tests\obj\Debug\net10.0\Global.Tests.genruntimeconfig.cache
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Tests\obj\Debug\net10.0\ref\Global.Tests.dll
+C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Tests\obj\Debug\net10.0\Global.Tests.sourcelink.json

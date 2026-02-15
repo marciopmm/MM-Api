@@ -15,3 +15,4 @@ C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Infrastructure\bin\Debug\net10
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Infrastructure\bin\Debug\net10.0\Global.Domain.pdb
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Infrastructure\obj\Debug\net10.0\Global.I.562A0B5D.Up2Date
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Infrastructure\obj\Debug\net10.0\Global.Infrastructure.genruntimeconfig.cache
+C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Infrastructure\obj\Debug\net10.0\Global.Infrastructure.sourcelink.json

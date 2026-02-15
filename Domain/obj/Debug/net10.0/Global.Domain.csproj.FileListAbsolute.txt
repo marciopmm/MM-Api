@@ -9,3 +9,4 @@ C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Domain\obj\Debug\net10.0\Globa
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Domain\obj\Debug\net10.0\refint\Global.Domain.dll
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Domain\obj\Debug\net10.0\Global.Domain.pdb
 C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Domain\obj\Debug\net10.0\ref\Global.Domain.dll
+C:\Users\Marcio\OneDrive\Área de Trabalho\GLOBAL\Domain\obj\Debug\net10.0\Global.Domain.sourcelink.json

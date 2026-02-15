@@ -1,11 +1,11 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Global.Infrastructure.Persistence.Db;
+
 using Global.Domain.Ports;
 using Global.Infrastructure.Persistence.Repository;
 
-namespace Global.Adapters.Outbound.Persistence.DependencyInjection;
+namespace Global.Infrastructure.Persistence.DependencyInjection;
 
 public static class PersistenceModule
 {
@@ -18,9 +18,6 @@ public static class PersistenceModule
 
         // Repositories (implementações das PORTS)
         services.AddScoped<IDeviceRepository, DeviceRepository>();
-
-        // UnitOfWork (se existir)
-        // services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

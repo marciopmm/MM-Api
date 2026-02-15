@@ -1,10 +1,12 @@
-﻿using Global.Domain.Entities;
+﻿using AutoMapper;
+using Global.Application.DTOs;
+using Global.Domain.Entities;
 using Global.Domain.Enums;
 using Global.Domain.Ports;
 
 namespace Global.Application.Services.Devices
 {
-    public class DeviceService : IDeviceService
+    internal class DeviceService : IDeviceService
     {
         private readonly IDeviceRepository _deviceRepository;
 
@@ -13,31 +15,31 @@ namespace Global.Application.Services.Devices
             _deviceRepository = deviceRepository;
         }
 
-        public List<Device> GetAllDevices()
+        public async Task<IEnumerable<Device>> GetAllDevicesAsync()
+        {
+            return await _deviceRepository.GetAllAsync();
+        }
+        public async Task<IEnumerable<Device>> GetDevicesByStateAsync(State state)
         {
             throw new NotImplementedException();
         }
-        public List<Device> GetDevicesByState(State state)
+        public async Task<IEnumerable<Device>> GetDevicesByBrandAsync(string brand)
         {
             throw new NotImplementedException();
         }
-        public List<Device> GetDevicesByBrand(string brand)
+        public async Task<Device> GetDeviceByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
-        public Device GetDeviceById(int id)
+        public async Task AddDeviceAsync(Device device)
         {
             throw new NotImplementedException();
         }
-        public void AddDevice(Device device)
+        public async Task UpdateDeviceAsync(Device device)
         {
             throw new NotImplementedException();
         }
-        public void UpdateDevice(Device device)
-        {
-            throw new NotImplementedException();
-        }
-        public void DeleteDevice(int id)
+        public async Task DeleteDeviceAsync(int id)
         {
             throw new NotImplementedException();
         }

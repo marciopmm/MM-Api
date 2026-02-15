@@ -5,12 +5,12 @@ namespace Global.Domain.Ports
 {
     public interface IDeviceService
     {
-        List<Device> GetAllDevices();
-        List<Device> GetDevicesByState(State state);
-        List<Device> GetDevicesByBrand(string brand);
-        Device GetDeviceById(int id);
-        void AddDevice(Device device);
-        void UpdateDevice(Device device);
-        void DeleteDevice(int id);
+        Task<IEnumerable<Device>> GetAllDevicesAsync();
+        Task<IEnumerable<Device>> GetDevicesByStateAsync(State state);
+        Task<IEnumerable<Device>> GetDevicesByBrandAsync(string brand);
+        Task<Device> GetDeviceByIdAsync(int id);
+        Task AddDeviceAsync(Device device);
+        Task UpdateDeviceAsync(Device device);
+        Task DeleteDeviceAsync(int id);
     }
 }
