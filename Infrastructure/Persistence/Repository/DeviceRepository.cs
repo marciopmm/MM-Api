@@ -25,10 +25,11 @@ public class DeviceRepository : IDeviceRepository
         return await _context.DeviceDbSet.ToListAsync();
     }
     
-    public async Task AddAsync(Device device)
+    public async Task<Device> AddAsync(Device device)
     {
         await _context.DeviceDbSet.AddAsync(device);
         await _context.SaveChangesAsync();
+        return device;
     }
 
     public async Task UpdateAsync(Device device)

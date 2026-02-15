@@ -16,7 +16,7 @@ namespace Global.Infrastructure.Persistence.Db
 
         public GlobalDbContext(IConfiguration configuration)
         {
-            var rawConnection = configuration.GetConnectionString("Default") ?? "Data Source=SQLite/GlobalDb.sqlite";
+            var rawConnection = configuration.GetConnectionString("Default") ?? "Data Source=../SQLite/GlobalDb.sqlite";
             var sqliteBuilder = new SqliteConnectionStringBuilder(rawConnection);
 
             var absolutePath = Path.GetFullPath(sqliteBuilder.DataSource);

@@ -210,11 +210,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\Global.Application.csproj",
+      "projectUniqueName": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\Global.Application.csproj",
       "projectName": "Global.Application",
-      "projectPath": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\Global.Application.csproj",
+      "projectPath": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\Global.Application.csproj",
       "packagesPath": "C:\\Users\\Marcio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\obj\\",
+      "outputPath": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

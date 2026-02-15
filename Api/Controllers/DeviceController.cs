@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Global.Application.DTOs;
 using Global.Application.Abstractions.Services;
+using Global.Domain.Entities;
 
 namespace Global.Api.Controllers
 {
@@ -22,16 +23,9 @@ namespace Global.Api.Controllers
         }
 
         [HttpPost(Name = "Devices")]
-        public async Task Post()
+        public async Task<DeviceDTO> Post([FromBody] AddDeviceDtoRequest addDeviceDto)
         {
-            var newDevice = new DeviceDTO
-            {
-                Name = "New Device",
-                Brand = "BrandX",
-                State = "Active"
-            };
-            
-            return await _deviceDtoService.AddDeviceAsync(newDevice);
+            return await _deviceDtoService.AddDeviceAsync(addDeviceDto);
         }
     }
 }

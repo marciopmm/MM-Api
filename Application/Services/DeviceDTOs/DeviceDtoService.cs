@@ -1,5 +1,5 @@
 using AutoMapper;
-using Global.Application.Abstractions.Services.DeviceDTOs;
+using Global.Application.Abstractions.Services;
 using Global.Application.DTOs;
 using Global.Domain.Entities;
 using Global.Domain.Enums;
@@ -47,10 +47,11 @@ namespace Global.Application.Services.DeviceDTOs
             return _mapper.Map<DeviceDTO>(device);
         }
 
-        public async Task<DeviceDTO> AddDeviceAsync(DeviceDTO deviceDto)
+        public async Task<DeviceDTO> AddDeviceAsync(AddDeviceDtoRequest addDeviceDto)
         {
-            var device = _mapper.Map<Device>(deviceDto);
-            await _deviceService.AddDeviceAsync(device);
+            var device = _mapper.Map<Device>(addDeviceDto);
+            var addedDevice = await _deviceService.AddDeviceAsync(device);
+            return _mapper.Map<DeviceDTO>(addedDevice);
         }
 
         public async Task UpdateDeviceAsync(DeviceDTO deviceDto)

@@ -9,7 +9,7 @@ namespace Global.Domain.Ports
     {
         Task<Device> GetByIdAsync(Guid id);
         Task<IEnumerable<Device>> GetAllAsync();
-        Task AddAsync(Device device);
+        Task<Device> AddAsync(Device device);
         Task UpdateAsync(Device device);
         Task UpdatePartialAsync(Device device);
         Task DeleteAsync(Guid id);

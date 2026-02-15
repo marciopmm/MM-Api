@@ -2972,11 +2972,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\Global.Infrastructure.csproj",
+      "projectUniqueName": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\Global.Infrastructure.csproj",
       "projectName": "Global.Infrastructure",
-      "projectPath": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\Global.Infrastructure.csproj",
+      "projectPath": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\Global.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Marcio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\obj\\",
+      "outputPath": "c:\\Users\\Marcio\\OneDrive\\Área de Trabalho\\GLOBAL\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -8,7 +8,7 @@ public interface IDeviceDtoService
     Task<IEnumerable<DeviceDTO>> GetDevicesByStateAsync(string state);
     Task<IEnumerable<DeviceDTO>> GetDevicesByBrandAsync(string brand);
     Task<DeviceDTO> GetDeviceByIdAsync(int id);
-    Task<DeviceDTO> AddDeviceAsync(DeviceDTO deviceDto);
+    Task<DeviceDTO> AddDeviceAsync(AddDeviceDtoRequest deviceDto);
     Task UpdateDeviceAsync(DeviceDTO deviceDto);
     Task DeleteDeviceAsync(int id);
 }

@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using Global.Application.Abstractions.Services.DeviceDTOs;
+using Global.Application.Abstractions.Services;
 using Global.Application.Services.DeviceDTOs;
 using Global.Application.Services.Devices;
 using Global.Domain.Ports;
