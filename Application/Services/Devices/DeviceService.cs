@@ -8,7 +8,7 @@ using OneGlobal.Domain.Ports;
 
 namespace OneGlobal.Application.Services.Devices
 {
-    internal class DeviceService : IDeviceService
+    public class DeviceService : IDeviceService
     {
         private readonly IDeviceRepository _deviceRepository;
 

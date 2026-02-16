@@ -8,7 +8,7 @@ namespace OneGlobal.Domain.Entities
         public string? Brand { get; set; }
         public State? State { get; set; }
 
-        public DevicePatch(string? name, string? brand, State? state)
+        public DevicePatch(string? name = null, string? brand = null, State? state = null)
         {
             Name = name;
             Brand = brand;
