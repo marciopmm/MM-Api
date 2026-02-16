@@ -8,9 +8,10 @@ namespace Global.Domain.Ports
         Task<IEnumerable<Device>> GetAllDevicesAsync();
         Task<IEnumerable<Device>> GetDevicesByStateAsync(State state);
         Task<IEnumerable<Device>> GetDevicesByBrandAsync(string brand);
-        Task<Device> GetDeviceByIdAsync(int id);
+        Task<Device> GetDeviceByIdAsync(Guid id);
         Task<Device> AddDeviceAsync(Device device);
-        Task UpdateDeviceAsync(Device device);
-        Task DeleteDeviceAsync(int id);
+        Task<Device> UpdateDeviceAsync(Guid id, DevicePatch devicePatch);
+        Task<Device> UpdateDevicePartialAsync(Guid id, DevicePatch devicePatch);
+        Task DeleteDeviceAsync(Guid id);
     }
 }

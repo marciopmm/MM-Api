@@ -41,7 +41,7 @@ namespace Global.Application.Services.DeviceDTOs
             return _mapper.Map<IEnumerable<DeviceDTO>>(devices);
         }
         
-        public async Task<DeviceDTO> GetDeviceByIdAsync(int id)
+        public async Task<DeviceDTO> GetDeviceByIdAsync(Guid id)
         {
             var device = await _deviceService.GetDeviceByIdAsync(id);
             return _mapper.Map<DeviceDTO>(device);
@@ -54,13 +54,21 @@ namespace Global.Application.Services.DeviceDTOs
             return _mapper.Map<DeviceDTO>(addedDevice);
         }
 
-        public async Task UpdateDeviceAsync(DeviceDTO deviceDto)
+        public async Task<DeviceDTO> UpdateDeviceAsync(Guid id, UpdateDeviceDtoRequest deviceDto)
         {
-            var device = _mapper.Map<Device>(deviceDto);
-            await _deviceService.UpdateDeviceAsync(device);
+            var devicePatch = _mapper.Map<DevicePatch>(deviceDto);
+            var updatedDevice = await _deviceService.UpdateDeviceAsync(id, devicePatch);
+            return _mapper.Map<DeviceDTO>(updatedDevice);
         }
 
-        public async Task DeleteDeviceAsync(int id)
+        public async Task<DeviceDTO> UpdateDevicePartialAsync(Guid id, UpdateDeviceDtoRequest deviceDto)
+        {
+            var devicePatch = _mapper.Map<DevicePatch>(deviceDto);
+            var updatedDevice = await _deviceService.UpdateDevicePartialAsync(id, devicePatch);
+            return _mapper.Map<DeviceDTO>(updatedDevice);
+        }
+
+        public async Task DeleteDeviceAsync(Guid id)
         {
             await _deviceService.DeleteDeviceAsync(id);
         }

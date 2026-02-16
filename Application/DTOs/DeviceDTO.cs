@@ -1,11 +1,13 @@
+using Global.Domain.Enums;
+
 namespace Global.Application.DTOs
 {
     public class DeviceDTO
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = null!;
         public string Brand { get; set; } = null!;
-        public string State { get; set; } = null!;
-        public DateTime CreationTime { get; set; }
+        public State State { get; set; } = State.Inactive;
+        public DateTime CreationTime { get; set; } = DateTime.UtcNow;
     }
 }

@@ -32,17 +32,32 @@ public class DeviceRepository : IDeviceRepository
         return device;
     }
 
-    public async Task UpdateAsync(Device device)
+    public async Task<Device> UpdateAsync(Guid id, DevicePatch devicePatch)
     {
+        var device = await _context.DeviceDbSet.FindAsync(id) ?? throw new DeviceNotFoundException(id);
+        device.Name = devicePatch.Name;
+        device.Brand = devicePatch.Brand;
+        device.State = devicePatch.State ?? device.State;
+
         _context.DeviceDbSet.Update(device);
         await _context.SaveChangesAsync();
+        return device;
     }
 
-    public async Task UpdatePartialAsync(Device device)
+    public async Task<Device> UpdatePartialAsync(Guid id, DevicePatch devicePatch)
     {
+        var device = await _context.DeviceDbSet.FindAsync(id) ?? throw new DeviceNotFoundException(id);
+        if (devicePatch.Name != null)
+            device.Name = devicePatch.Name;
+        if (devicePatch.Brand != null)
+            device.Brand = devicePatch.Brand;
+        if (devicePatch.State.HasValue)
+            device.State = devicePatch.State.Value;
+
         _context.DeviceDbSet.Attach(device);
         _context.Entry(device).State = EntityState.Modified;
         await _context.SaveChangesAsync();
+        return device;
     }
 
     public async Task DeleteAsync(Guid id)

@@ -6,7 +6,7 @@ using Global.Domain.Entities;
 namespace Global.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("devices")]
     public class DeviceController : ControllerBase
     {
         private readonly IDeviceDtoService _deviceDtoService;
@@ -16,16 +16,41 @@ namespace Global.Api.Controllers
             _deviceDtoService = deviceDtoService;
         }
 
-        [HttpGet(Name = "Devices")]
+        [HttpGet()]
         public async Task<IEnumerable<DeviceDTO>> Get()
         {
             return await _deviceDtoService.GetAllDevicesAsync();
         }
 
-        [HttpPost(Name = "Devices")]
+        [HttpGet("{id}")]
+        public async Task<DeviceDTO> Get(Guid id)
+        {
+            return await _deviceDtoService.GetDeviceByIdAsync(id);
+        }
+
+        [HttpPost()]
         public async Task<DeviceDTO> Post([FromBody] AddDeviceDtoRequest addDeviceDto)
         {
             return await _deviceDtoService.AddDeviceAsync(addDeviceDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<DeviceDTO> Put(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
+        {
+            return await _deviceDtoService.UpdateDeviceAsync(id, updateDeviceDto);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<DeviceDTO> Patch(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
+        {
+            return await _deviceDtoService.UpdateDevicePartialAsync(id, updateDeviceDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _deviceDtoService.DeleteDeviceAsync(id);
+            return NoContent();
         }
     }
 }
