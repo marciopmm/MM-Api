@@ -1,23 +1,40 @@
 using OneGlobal.Domain.Entities;
 using OneGlobal.Domain.Enums;
+using OneGlobal.Domain.Exceptions;
 
 namespace OneGlobal.Application.Validations;
 
 public static class DeviceValidations
 {
-    public static bool IsValidForUpdate(Device current, DevicePatch patch)
+    public static void IsValidForAdd(Device newDevice)
     {
-        if (patch.State != State.InUse)
+        if (!Enum.IsDefined(typeof(State), newDevice.State))
         {
-            return true;
+            throw new InvalidStateException();
         }
-
-        return current.Name == (patch.Name ?? current.Name) &&
-               current.Brand == (patch.Brand ?? current.Brand);
     }
 
-    public static bool IsValidForDelete(Device current)
+    public static void IsValidForUpdate(Device current, DevicePatch patch)
     {
-        return current.State != State.InUse;
+        if (patch.State.HasValue &&
+            patch.State == State.InUse &&
+            current.Name == (patch.Name ?? current.Name) &&
+            current.Brand == (patch.Brand ?? current.Brand))
+        {
+            throw new InvalidStateForUpdateException(current.Id);
+        }
+
+        if (patch.State.HasValue && !Enum.IsDefined(typeof(State), patch.State))
+        {
+            throw new InvalidStateException(current.Id);
+        }
+    }
+
+    public static void IsValidForDelete(Device current)
+    {
+        if (current.State == State.InUse)
+        {
+            throw new InvalidStateForDeleteException(current.Id);
+        }
     }
 }

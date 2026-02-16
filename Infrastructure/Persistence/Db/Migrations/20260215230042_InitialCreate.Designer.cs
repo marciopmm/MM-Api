@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace OneGlobal.Infrastructure.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(GlobalDbContext))]
+    [DbContext(typeof(OneGlobalDbContext))]
     [Migration("20260215230042_InitialCreate")]
     partial class InitialCreate
     {

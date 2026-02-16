@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using OneGlobal.Infrastructure.Persistence.Db;
 
 using OneGlobal.Domain.Ports;
+using OneGlobal.Infrastructure.Persistence.Db;
 using OneGlobal.Infrastructure.Persistence.Repository;
+using OneGlobal.Infrastructure.Persistence.Abstractions;
 
 namespace OneGlobal.Infrastructure.Persistence.DependencyInjection;
 
@@ -14,9 +16,10 @@ public static class PersistenceModule
         IConfiguration configuration)
     {
         // DbContext
-        services.AddDbContext<GlobalDbContext>();
+        services.AddDbContext<OneGlobalDbContext>();
 
-        // Repositories (implementações das PORTS)
+        // Repositories (Ports and Adapters Implementations)
+        services.AddScoped<IOneGlobalDbContext>(sp => sp.GetRequiredService<OneGlobalDbContext>());
         services.AddScoped<IDeviceRepository, DeviceRepository>();
 
         return services;

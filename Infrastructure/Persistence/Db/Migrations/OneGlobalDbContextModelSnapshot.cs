@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace OneGlobal.Infrastructure.Infrastructure.Persistence.Migrations
+namespace OneGlobal.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(GlobalDbContext))]
-    partial class GlobalDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(OneGlobalDbContext))]
+    partial class OneGlobalDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

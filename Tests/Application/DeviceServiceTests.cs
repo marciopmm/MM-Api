@@ -62,7 +62,7 @@ public class DeviceServiceTests
         };
         _repositoryMock
             .Setup(r => r.GetAllAsync())
-            .ReturnsAsync(new List<Device>(devices));
+            .ReturnsAsync(devices);
 
         // Act
         var result = await _sut.GetAllDevicesAsync();
@@ -79,7 +79,7 @@ public class DeviceServiceTests
         var devices = new List<Device>
         {
             new Device("Router", "Cisco", State.Available, DateTime.UtcNow),
-            new Device("Switch", "Juniper", State.Available, DateTime.UtcNow)
+            new Device("Switch", "Juniper", State.InUse, DateTime.UtcNow)
         };
         _repositoryMock
             .Setup(r => r.GetAllAsync())
@@ -89,7 +89,8 @@ public class DeviceServiceTests
         var result = await _sut.GetDevicesByStateAsync(State.Available);
 
         // Assert
-        Assert.AreEqual(devices, result);
+        Assert.AreEqual(1, result.Count());
+        Assert.AreEqual("Cisco", result.First().Brand);
         _repositoryMock.Verify(r => r.GetAllAsync(), Times.Once);
     }
 

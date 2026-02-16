@@ -3,14 +3,15 @@ using OneGlobal.Domain.Exceptions;
 using OneGlobal.Domain.Ports;
 using OneGlobal.Infrastructure.Persistence.Db;
 using Microsoft.EntityFrameworkCore;
+using OneGlobal.Infrastructure.Persistence.Abstractions;
 
 namespace OneGlobal.Infrastructure.Persistence.Repository;
 
 public class DeviceRepository : IDeviceRepository
 {
-    private readonly GlobalDbContext _context;
+    private readonly IOneGlobalDbContext _context;
 
-    public DeviceRepository(GlobalDbContext context)
+    public DeviceRepository(IOneGlobalDbContext context)
     {
         _context = context;
     }
@@ -27,6 +28,9 @@ public class DeviceRepository : IDeviceRepository
 
     public async Task<Device> AddAsync(Device device)
     {
+        if (string.IsNullOrWhiteSpace(device.Name)) throw new ArgumentNullException("Name");
+        if (string.IsNullOrWhiteSpace(device.Brand)) throw new ArgumentNullException("Brand");
+        
         await _context.DeviceDbSet.AddAsync(device);
         await _context.SaveChangesAsync();
         return device;
@@ -35,9 +39,9 @@ public class DeviceRepository : IDeviceRepository
     public async Task<Device> UpdateAsync(Guid id, DevicePatch devicePatch)
     {
         var device = await _context.DeviceDbSet.FindAsync(id) ?? throw new DeviceNotFoundException(id);
-        device.Name = devicePatch.Name ?? throw new ArgumentNullException(nameof(devicePatch.Name));
-        device.Brand = devicePatch.Brand ?? throw new ArgumentNullException(nameof(devicePatch.Brand));
-        device.State = devicePatch.State ?? throw new ArgumentNullException(nameof(devicePatch.State));
+        device.Name = devicePatch.Name ?? throw new ArgumentNullException("Name");
+        device.Brand = devicePatch.Brand ?? throw new ArgumentNullException("Brand");
+        device.State = devicePatch.State ?? throw new ArgumentNullException("State");
 
         _context.DeviceDbSet.Update(device);
         await _context.SaveChangesAsync();
@@ -54,8 +58,7 @@ public class DeviceRepository : IDeviceRepository
         if (devicePatch.State.HasValue)
             device.State = devicePatch.State.Value;
 
-        _context.DeviceDbSet.Attach(device);
-        _context.Entry(device).State = EntityState.Modified;
+        _context.DeviceDbSet.Update(device);
         await _context.SaveChangesAsync();
         return device;
     }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using OneGlobal.Application.DTOs;
 using OneGlobal.Application.Abstractions.Services;
 using OneGlobal.Domain.Entities;
+using OneGlobal.Domain.Exceptions;
 
 namespace OneGlobal.Api.Controllers
 {
@@ -23,34 +24,122 @@ namespace OneGlobal.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<DeviceDTO> Get(Guid id)
+        public async Task<ActionResult<DeviceDTO>> Get(Guid id)
         {
-            return await _deviceDtoService.GetDeviceByIdAsync(id);
+            try
+            {
+                var device = await _deviceDtoService.GetDeviceByIdAsync(id);
+                if (device == null)
+                {
+                    return NotFound();
+                }
+                return Ok(device);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
 
         [HttpPost()]
-        public async Task<DeviceDTO> Post([FromBody] AddDeviceDtoRequest addDeviceDto)
+        public async Task<ActionResult<DeviceDTO>> Post([FromBody] AddDeviceDtoRequest addDeviceDto)
         {
-            return await _deviceDtoService.AddDeviceAsync(addDeviceDto);
+            try
+            {
+                return await _deviceDtoService.AddDeviceAsync(addDeviceDto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest($"The field {ex.ParamName} is required.");
+            }
+            catch (InvalidStateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception) 
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<DeviceDTO> Put(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
+        public async Task<ActionResult<DeviceDTO>> Put(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
         {
-            return await _deviceDtoService.UpdateDeviceAsync(id, updateDeviceDto);
+            try
+            {
+                return await _deviceDtoService.UpdateDeviceAsync(id, updateDeviceDto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest($"The field {ex.ParamName} is required.");
+            }
+            catch (InvalidStateForUpdateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (InvalidStateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (DeviceNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
 
         [HttpPatch("{id}")]
-        public async Task<DeviceDTO> Patch(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
+        public async Task<ActionResult<DeviceDTO>> Patch(Guid id, [FromBody] UpdateDeviceDtoRequest updateDeviceDto)
         {
-            return await _deviceDtoService.UpdateDevicePartialAsync(id, updateDeviceDto);
+            try
+            {
+                return await _deviceDtoService.UpdateDevicePartialAsync(id, updateDeviceDto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest($"The field {ex.ParamName} is required.");
+            }
+            catch (InvalidStateForUpdateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (InvalidStateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (DeviceNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _deviceDtoService.DeleteDeviceAsync(id);
-            return NoContent();
+            try
+            {
+                await _deviceDtoService.DeleteDeviceAsync(id);
+                return NoContent();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest($"The field {ex.ParamName} is required.");
+            }
+            catch (DeviceNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
     }
 }
