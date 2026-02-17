@@ -8,12 +8,8 @@ services:
       - "8080:8080"             # host:container
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:8080
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      # Keep SQLite data on the host (persistent) and at the same level as publish
-      - ../SQLite:/app/SQLite
-
-      # Optional: keep publish on the host too (so you can replace binaries without rebuilding)
-      # If you prefer a fully self-contained image, remove this line.
       - ../publish:/app/publish:ro
+      - ../SQLite:/app/SQLite
     restart: unless-stopped

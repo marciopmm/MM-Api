@@ -18,7 +18,7 @@ EXPOSE 8080
 
 # Bind to all interfaces so the port mapping works
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Run the API from the published binaries
 ENTRYPOINT ["dotnet", "publish/api/MM.Api.dll"]

@@ -179,6 +179,9 @@ coverage*.info
 *.coverage
 *.coveragexml
 
+# Coveragereport is a code coverage tool
+coveragereport/
+
 # NCrunch
 _NCrunch_*
 .NCrunch_*

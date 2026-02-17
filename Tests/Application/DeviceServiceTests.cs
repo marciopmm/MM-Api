@@ -190,22 +190,21 @@ public class DeviceServiceTests
     public async Task UpdateDeviceAsync_WhenDeviceIsValid_ReturnsUpdatedDevice()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var devicePatch = new DevicePatch { State = State.InUse };
-        var updatedDevice = new Device("Router", "Cisco", State.InUse, DateTime.UtcNow);
+        var devicePatch = new DevicePatch { State = State.Available };
+        var updatedDevice = new Device("Router", "Cisco", State.Available, DateTime.UtcNow);
         _repositoryMock
-            .Setup(r => r.GetByIdAsync(id))
-            .ReturnsAsync(new Device("Router", "Cisco", State.Available, DateTime.UtcNow));
+            .Setup(r => r.GetByIdAsync(updatedDevice.Id))
+            .ReturnsAsync(updatedDevice);
         _repositoryMock
-            .Setup(r => r.UpdateAsync(id, devicePatch))
+            .Setup(r => r.UpdateAsync(updatedDevice.Id, devicePatch))
             .ReturnsAsync(updatedDevice);
 
         // Act
-        var result = await _sut.UpdateDeviceAsync(id, devicePatch);
+        var result = await _sut.UpdateDeviceAsync(updatedDevice.Id, devicePatch);
 
         // Assert
         Assert.AreSame(updatedDevice, result);
-        _repositoryMock.Verify(r => r.GetByIdAsync(id), Times.Once);
-        _repositoryMock.Verify(r => r.UpdateAsync(id, devicePatch), Times.Once);
+        _repositoryMock.Verify(r => r.GetByIdAsync(updatedDevice.Id), Times.Once);
+        _repositoryMock.Verify(r => r.UpdateAsync(updatedDevice.Id, devicePatch), Times.Once);
     }
 }

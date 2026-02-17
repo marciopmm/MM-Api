@@ -20,11 +20,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/openapi/v1.json", "1GLOBAL API V1");
+        c.SwaggerEndpoint("/openapi/v1.json", "MM API V1");
     });
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
